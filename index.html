@@ -11,7 +11,7 @@
 <body>
  
   <h1>Enter Information</h1>
-    <form action="https://script.google.com/macros/s/AKfycbyivgFOX9I5XxCAe1jN7Z_JBFkXB_x2AcHQrMsBbI1kXhIwDHJUAq9v6aYGckVvGO_v/exec" method="post">
+    //<form action="https://script.google.com/macros/s/AKfycbyivgFOX9I5XxCAe1jN7Z_JBFkXB_x2AcHQrMsBbI1kXhIwDHJUAq9v6aYGckVvGO_v/exec" method="post">
         <form id="clockForm">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -26,12 +26,36 @@
   </p>
 
   <script>
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.register (
-          '/github-page-pwa/sw.js',
-          {scope: '/github-page-pwa/'}
-        )
-      }
+
+      document.getElementById('clockForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('name').value;
+    const url = 'https://script.google.com/macros/s/AKfycbw8Amm88qMgZFo4FC98umVTevGH6I8No-o9keNJEHlmKLzlFdnkszHUiQoSJs5QcuWu/exec'; // Replace with your Google Script URL
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: name })
+    })
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('response').innerText = data;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+
+    
+      //if (navigator.serviceWorker) {
+       // navigator.serviceWorker.register (
+       //   '/github-page-pwa/sw.js',
+       //   {scope: '/github-page-pwa/'}
+       // )
+    //  }
   </script>
   <script src="js/app.js"></script>
 </body>
