@@ -12,14 +12,25 @@ var URLS = [
 var CACHE_NAME = APP_PREFIX + VERSION
 self.addEventListener('fetch', function (e) {
   console.log('Fetch request : ' + e.request.url);
-  e.respondWith(
-    caches.match(e.request).then(function (request) {
-      if (request) { 
-        console.log('Responding with cache : ' + e.request.url);
-        return request
-      } else {       
-        console.log('File is not cached, fetching : ' + e.request.url);
-        return fetch(e.request)
+  if (e.request.method === 'POST') {
+      // Handle form submission
+      e.respondWith(
+        fetch(e.request).then(function (response) {
+          return response;
+        }).catch(function (error) {
+          console.error('Form submission failed:', error);
+          return new Response('Form submission failed', { status: 500 });
+        })
+      );
+    } else {
+      e.respondWith(
+        caches.match(e.request).then(function (request) {
+          if (request) { 
+            console.log('Responding with cache : ' + e.request.url);
+            return request;
+          } else {       
+            console.log('File is not cached, fetching : ' + e.request.url);
+            return fetch(e.request)
       }
     })
   )
