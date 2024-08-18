@@ -11,9 +11,9 @@
 <body>
  
   <h1>Enter Information</h1>
-    
-        <!--<label for="name">Name:</label> --!><!--put this row above:<form action="https://script.google.com/macros/s/AKfycbyivgFOX9I5XxCAe1jN7Z_JBFkXB_x2AcHQrMsBbI1kXhIwDHJUAq9v6aYGckVvGO_v/exec" method="post">--!>
+    <form action="https://script.google.com/macros/s/AKfycbyivgFOX9I5XxCAe1jN7Z_JBFkXB_x2AcHQrMsBbI1kXhIwDHJUAq9v6aYGckVvGO_v/exec" method="post">
         <form id="clockForm">
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         <button type="submit">Submit</button>
         <div id="message">
@@ -26,37 +26,12 @@
   </p>
 
   <script>
-
-      document.getElementById('clockForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const name = document.getElementById('name').value;
-    const url = 'https://script.google.com/macros/s/AKfycbzD2KDa_8kHa7OaMo6PqMFYe6A96YhgOdGnai0rxFUyuN2NBcdUnJ158-TjFg5yJbQS/exec'; // Replace with your Google Script URL
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name: name })
-    })
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('response').innerText = data;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-    return false;
-  });
-
-    
-      //if (navigator.serviceWorker) {
-       // navigator.serviceWorker.register (
-       //   '/github-page-pwa/sw.js',
-       //   {scope: '/github-page-pwa/'}
-       // )
-    //  }
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/github-page-pwa/sw.js',
+          {scope: '/github-page-pwa/'}
+        )
+      }
   </script>
   <script src="js/app.js"></script>
 </body>
