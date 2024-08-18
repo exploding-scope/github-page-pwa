@@ -12,7 +12,7 @@ var URLS = [
 var CACHE_NAME = APP_PREFIX + VERSION
 self.addEventListener('fetch', function (e) {
   console.log('Fetch request : ' + e.request.url);
-  if (e.request.method === 'POST') {
+  if (e.request.method === 'POST3') {
       console.log('Form submitted successfully!');// Handle form submission
       e.respondWith(
         fetch(e.request).then(function (response) {
