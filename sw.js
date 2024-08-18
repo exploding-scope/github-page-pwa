@@ -13,7 +13,7 @@ var CACHE_NAME = APP_PREFIX + VERSION
 self.addEventListener('fetch', function (e) {
   console.log('Fetch request : ' + e.request.url);
   if (e.request.method === 'POST') {
-      // Handle form submission
+      console.log('Form submitted successfully!');// Handle form submission
       e.respondWith(
         fetch(e.request).then(function (response) {
           return response;
