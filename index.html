@@ -18,6 +18,8 @@
         <button type="submit">Submit</button>
         <div id="message">
     <\form>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  <div id="response"></div>
   <p>
     This is a PWA template for GitHub pages. 
     Make sure to check the README at 
@@ -33,6 +35,16 @@
         )
       }
   </script>
+ <script>
+  let submitted = false;
+
+  document.getElementById('hidden_iframe').onload = function() {
+    if (submitted) {
+      document.getElementById('response').innerText = 'Success';
+      submitted = false;
+    }
+  };
+</script>
 
   <script src="js/app.js"></script>
 </body>
